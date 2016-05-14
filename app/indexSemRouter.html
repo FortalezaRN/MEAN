@@ -5,6 +5,22 @@
 	<title>MEAN</title>
 </head>
 <body ng-app="MeuModulo" ng-controller="MeuController">
+	<h1>Rodolfo Drogado!</h1>
+	<input type="text" ng-model="texto">{{texto}}{{titulo}}
+	<br>
+	<br>
+
+
+	As vingadoras:<br>
+	<ul>
+		<li ng-repeat="vingador in vingadora"> {{vingador}}</li>
+	</ul>
+	<input type="text" ng-model="filtro">
+	<ul>
+		<li ng-repeat="vingador in vingadora | filter:filtro">{{vingador}}</li>
+	</ul> <br><br>
+
+
 	<ul>
 		<li ng-repeat="vingador in vingadores | filter:filtro" ng-show="vingador.visivel"> {{vingador.nome}}</li>
 	</ul>
@@ -20,22 +36,13 @@
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
 	<script>
-		angular.module('MeuModulo',['ngRoute']);
-		angular.module('MeuModulo').config(function($routeProvider){
+		angular.module('MeuModulo',['ng-route']).config(function($routeProvider){
 			$routeProvider.when('/',{
 				controller:'MeuController',
-				template:'<h1>Minha rota</h1>'
-			})
-			.when('/rota2',{
-				controller: 'MeuController2',
-				template: '<h1> segunda pagina </h1>'
-			})
-			.when('/404',{
-				controller: 'MeuController23',
-				template: '<h1> not found </h1>'
-			})
+				template:'<h1> minha rota</h1>'
+			});
 		});
-		
+		angular.module('MeuModulo',[]);
 		angular.module('MeuModulo').controller('MeuController', function($scope){
 			$scope.titulo = "titulo";
 			$scope.vingadora = ['Lucas','Rodolfo','Danilin','Micael','Henri'];
