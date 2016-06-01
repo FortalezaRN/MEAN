@@ -27,3 +27,15 @@ gulp.task('serve', function() {
 
 });
 ```
+Depois de um 
+
+> bower init
+
+não funcinou no git bash do windows. Tive que usar o cmd
+
+depois
+
+> bower install angular --save
+
+> bower install bootstrap-material-design --save
+
