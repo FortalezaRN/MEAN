@@ -1,7 +1,10 @@
 # MEAN
-Instala o node.js
 
-Instalando os nodes-modules
+De clone 
+
+Instale o node.js
+
+Depois intales os modulos
 
 > npm install bower gulp -g
 
@@ -27,13 +30,13 @@ gulp.task('serve', function() {
 
 });
 ```
-Depois de um 
+Depois de um: 
 
 > bower init
 
 não funcinou no git bash do windows. Tive que usar o cmd
 
-depois
+Entre na pasta app e dê os comandos
 
 > bower install angular --save
 

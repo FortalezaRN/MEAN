@@ -3,24 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>MEAN</title>
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
-	<style type="text/css">
-		.table-center > *{
-			text-align: center !important;
-		}
-	</style>
 </head>
 <body ng-app="MeuModulo" ng-controller="MeuController">
+	<ul>
+		<li ng-repeat="vingador in vingadores | filter:filtro" ng-show="vingador.visivel"> {{vingador.nome}}</li>
+	</ul>
+
+
+	<input type="text" ng-model="vingador.nome">
+	<button ng-click="minhaFuncao(vingador)">Adicionar Vingador</button>
+
 
 	<div ng-view class="view-animate"></div>
 
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="bower_components/angular-route/angular-route.min.js"></script>
 
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-route/angular-route.min.js"></script>
 	<script>
 		angular.module('MeuModulo',['ngRoute']);
 		angular.module('MeuModulo').config(function($routeProvider){
@@ -34,27 +32,10 @@
 			})
 			
 		})
-		.controller('contTabela', function($scope, $http) {
-			$http.get('artigos.json')
-			.then(function(res){
-				$scope.artigos = res.data;
-			});
-
-			$scope.addNovoArtigo = function(){
-				$("#inNome").val("");
-				$("#inAutor").val("");
-				$("#inLink").val("");
-				
-				$("#inNome").prop( "disabled", false ).focus();
-				$("#inAutor").prop( "disabled", false );
-				$("#inLink").prop( "disabled", false );
-
-				$("btnNovo").prop('disabled', true);
-
-				$("btnInserir").prop( "disabled", false );
-			}
-
+		.controller('contTabela', function($routeParams) {
+            $routeParams.message = "This page will be used to display all the students";
         });
+		
 		angular.module('MeuModulo').controller('MeuController', function($scope){
 			$scope.titulo = "titulo";
 			$scope.vingadora = ['Lucas','Rodolfo','Danilin','Micael','Henri'];

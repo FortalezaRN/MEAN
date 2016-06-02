@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MEAN</title>
+</head>
+<body ng-app="MeuModulo" ng-controller="MeuController">
+	<ul>
+		<li ng-repeat="vingador in vingadores | filter:filtro" ng-show="vingador.visivel"> {{vingador.nome}}</li>
+	</ul>
+
+
+	<input type="text" ng-model="vingador.nome">
+	<button ng-click="minhaFuncao(vingador)">Adicionar Vingador</button>
+
+
+	<div ng-view></div>
+
+
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-route/angular-route.min.js"></script>
+	<script>
+		angular.module('MeuModulo',['ngRoute']);
+		angular.module('MeuModulo').config(function($routeProvider){
+			$routeProvider.when('/',{
+				controller:'MeuController',
+				template:'<h1>Minha rota</h1>'
+			})
+			.when('/tabela',{
+				controller: 'MeuController2',
+				view: 'tabela.html'
+			})
+			.when('/404',{
+				controller: 'MeuController23',
+				template: '<h1> not found </h1>'
+			})
+		});
+		
+		angular.module('MeuModulo').controller('MeuController', function($scope){
+			$scope.titulo = "titulo";
+			$scope.vingadora = ['Lucas','Rodolfo','Danilin','Micael','Henri'];
+			$scope.vingadores = [
+				{nome:"Viúva Negra", visivel:true},
+				{nome:"Hulk", visivel:true},
+				{nome:"Capitão america", visivel:true},
+				{nome:"Homem de ferro", visivel:true},
+				{nome:"Gavião arqueiro", visivel:true},
+				{nome:"Homem aranha", visivel:false},
+			];
+			$scope.minhaFuncao = function(nome){
+				nome.visivel = true;
+				$scope.vingadores.push(angular.copy(nome));
+			}
+
+		});
+	</script>
+</body>
+</html>
