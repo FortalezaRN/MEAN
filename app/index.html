@@ -9,6 +9,26 @@
 		.table-center > *{
 			text-align: center !important;
 		}
+		.vertical-alignment-helper {
+		    display:table;
+		    height: 100%;
+		    width: 100%;
+		    pointer-events:none;
+		}
+		.vertical-align-center {
+		    /* To center vertically */
+		    display: table-cell;
+		    vertical-align: middle;
+		    pointer-events:none;
+		}
+		.modal-content {
+		    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+		    width:inherit;
+		    height:inherit;
+		    /* To center horizontally */
+		    margin: 0 auto;
+		    pointer-events:all;
+		}
 	</style>
 </head>
 <body ng-app="MeuModulo" ng-controller="MeuController">
@@ -71,6 +91,11 @@
 					$("#btnInserir").html("Salvar Alterações").prop( "disabled", false ).click(function(event) {
 						console.log("id: "+id+"\nnome: "+nome+"\nautor: "+autor+"\nlink: "+link);$scope.ativaDesativaInputs(true);
 					});
+				});
+
+				$("#btnExcluirArtigo").click(function(evt) {
+					$('#myModal').modal('hide');
+					console.log("excluido id== "+id);
 				});
 
 				console.log("nome: "+nome+"\nautor: "+autor+"\nlink: "+link);
