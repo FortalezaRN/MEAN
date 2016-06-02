@@ -32,7 +32,6 @@
 				controller: 'contTabela',
 				templateUrl: 'tabela.html'
 			})
-			
 		})
 		.controller('contTabela', function($scope, $http) {
 			$http.get('artigos.json')
@@ -40,18 +39,67 @@
 				$scope.artigos = res.data;
 			});
 
-			$scope.addNovoArtigo = function(){
+			$scope.query={};
+			$scope.queryBy='nome';
+			$scope.orderProp="nome";
+
+			$scope.zeraInputs = function(){
 				$("#inNome").val("");
 				$("#inAutor").val("");
 				$("#inLink").val("");
+			}
+
+			$scope.ativaDesativaInputs = function(bolea){
+				(bolea)?$("#inNome").prop( "disabled", bolea ):$("#inNome").prop( "disabled", bolea ).focus();
+				$("#inAutor").prop( "disabled", bolea );
+				$("#inLink").prop( "disabled", bolea );
+			}
+
+			$scope.retiraDadosTabela = function(id, nome, autor, link){
+				$("#btnEditar").prop('disabled', false);
+				$("#btnInserir").prop('disabled', true);
+				$("#btnNovo").prop('disabled', false);
+
+				$("#inNome").val(nome);
+				$("#inAutor").val(autor);
+				$("#inLink").val(link);
+
+				$("#btnEditar").click(function(event) {
+
+					$scope.ativaDesativaInputs(false);
+
+					$("#btnInserir").html("Salvar Alterações").prop( "disabled", false ).click(function(event) {
+						console.log("id: "+id+"\nnome: "+nome+"\nautor: "+autor+"\nlink: "+link);$scope.ativaDesativaInputs(true);
+					});
+				});
+
+				console.log("nome: "+nome+"\nautor: "+autor+"\nlink: "+link);
+			}
+
+			$scope.addNovoArtigo = function(){
+				$scope.zeraInputs();
 				
-				$("#inNome").prop( "disabled", false ).focus();
-				$("#inAutor").prop( "disabled", false );
-				$("#inLink").prop( "disabled", false );
+				$scope.ativaDesativaInputs(false);
 
-				$("btnNovo").prop('disabled', true);
+				$("#btnNovo").prop('disabled', true);
+				$("#btnEditar").prop('disabled', true);
 
-				$("btnInserir").prop( "disabled", false );
+				$("#btnInserir").html("Criar Novo").prop( "disabled", false ).click(function(event) {
+
+					var nome = $("#inNome").val();
+					var autor = $("#inAutor").val();
+					var link = $("#inLink").val();
+
+					console.log("nome: "+nome+"\nautor: "+autor+"\nlink: "+link);
+
+					$scope.zeraInputs();
+					$scope.ativaDesativaInputs(true);
+
+					$(this).prop('disabled', true);
+
+					$("#btnNovo").prop('disabled', false)
+
+				});
 			}
 
         });
