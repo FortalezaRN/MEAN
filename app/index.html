@@ -10,24 +10,21 @@
 			text-align: center !important;
 		}
 		.vertical-alignment-helper {
-		    display:table;
-		    height: 100%;
-		    width: 100%;
-		    pointer-events:none;
+			display:table;
+			height: 100%;
+			width: 100%;
+			pointer-events:none;
 		}
 		.vertical-align-center {
-		    /* To center vertically */
-		    display: table-cell;
-		    vertical-align: middle;
-		    pointer-events:none;
+			display: table-cell;
+			vertical-align: middle;
+			pointer-events:none;
 		}
 		.modal-content {
-		    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-		    width:inherit;
-		    height:inherit;
-		    /* To center horizontally */
-		    margin: 0 auto;
-		    pointer-events:all;
+			width:inherit;
+			height:inherit;
+			margin: 0 auto;
+			pointer-events:all;
 		}
 	</style>
 </head>
@@ -35,7 +32,6 @@
 
 	<div ng-view class="view-animate"></div>
 
-	<!-- Latest compiled and minified JavaScript -->
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
@@ -127,17 +123,17 @@
 				});
 			}
 
-        });
+		});
 		angular.module('MeuModulo').controller('MeuController', function($scope){
 			$scope.titulo = "titulo";
 			$scope.vingadora = ['Lucas','Rodolfo','Danilin','Micael','Henri'];
 			$scope.vingadores = [
-				{nome:"Viúva Negra", visivel:true},
-				{nome:"Hulk", visivel:true},
-				{nome:"Capitão america", visivel:true},
-				{nome:"Homem de ferro", visivel:true},
-				{nome:"Gavião arqueiro", visivel:true},
-				{nome:"Homem aranha", visivel:false},
+			{nome:"Viúva Negra", visivel:true},
+			{nome:"Hulk", visivel:true},
+			{nome:"Capitão america", visivel:true},
+			{nome:"Homem de ferro", visivel:true},
+			{nome:"Gavião arqueiro", visivel:true},
+			{nome:"Homem aranha", visivel:false},
 			];
 			$scope.minhaFuncao = function(nome){
 				nome.visivel = true;
